@@ -21,7 +21,7 @@
   mysql_db:
     state: import
     name: "{{ item.db }}"
-    target: "/home/ken/ansible/tmp/{{ item.src }}.dump.sql"
+    target: "/home/ken/ansible/tmp/{{ item.src }}.dump.sql.gz"
   with_items:
     - { db: '100', src: '100' }
     - { db: 'bookmark', src: 'bookmark' }
@@ -40,6 +40,9 @@
   mysql_user:
     name: ops
     password: "{{ mysql_ops_pass }}"
+    state: present
+    priv: "*.*:ALL"
+    host: localhost
   notify: restart mysql
 
 - name: MySQLユーザ作成 (app)
@@ -47,4 +50,7 @@
   mysql_user:
     name: app
     password: "{{ mysql_app_pass }}"
+    state: present
+    priv: "*.*:ALTER,CREATE,CREATE TEMPORARY TABLES,CREATE VIEW,DELETE,DROP,EXECUTE,FILE,INDEX,INSERT,LOCK TABLES,SELECT,UPDATE"
+    host: localhost
   notify: restart mysql
