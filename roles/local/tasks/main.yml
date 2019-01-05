@@ -1,0 +1,4 @@
+- include: 10_popfile_pre.yml
+- include: 20_tmp_tar.yml
+- include: 30_popfile_post.yml
+- include: 30_mysql_pre.yml

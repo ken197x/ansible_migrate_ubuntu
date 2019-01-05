@@ -1,0 +1,60 @@
+- name: sambaインストール
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+      - samba
+  notify: restart samba
+
+- name: samba設定 (1) エントリ追加・修正
+  become: true
+  ini_file:
+    path: /etc/samba/smb.conf
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { section: 'global', option: 'workgroup', value: 'enterprise' }
+    - { section: 'global', option: 'unix extensions', value: 'no' }
+    - { section: 'global', option: 'wide links', value: 'yes' }
+    - { section: 'homes', option: 'comment', value: 'Home Directories' }
+    - { section: 'homes', option: 'browseable', value: 'no' }
+    - { section: 'homes', option: 'read only', value: 'no' }
+    - { section: 'homes', option: 'create mask', value: '0644' }
+    - { section: 'homes', option: 'directory mask', value: '0755' }
+    - { section: 'public_smb', option: 'path', value: '/var/public_smb' }
+    - { section: 'public_smb', option: 'browseable', value: 'yes' }
+    - { section: 'public_smb', option: 'read only', value: 'no' }
+    - { section: 'public_smb', option: 'guest only', value: 'yes' }
+    - { section: 'public_smb', option: 'guest ok', value: 'yes' }
+    - { section: 'public_smb', option: 'create mask', value: '0644' }
+    - { section: 'public_smb', option: 'directory mask', value: '0755' }
+  notify: restart samba
+
+- name: samba設定 (2) セクション削除
+  become: true
+  ini_file:
+    state: absent
+    path: /etc/samba/smb.conf
+    section: "{{ item.section }}"
+  with_items:
+    - { section: 'printers' }
+    - { section: 'print$' }
+  notify: restart samba
+
+- name: sambaユーザ作成
+  become: true
+  shell: >
+    (pdbedit --user={{ item.username }} 2>&1 > /dev/null)
+    || (echo '{{ item.password }}'; echo '{{ item.password }}')
+    | smbpasswd -s -a {{ item.username }}
+  register: smbpasswd
+  changed_when: "'Added user' in smbpasswd.stdout"
+  with_items:
+    - { username: 'ken', password: "{{ ken_pass }}" }
+  loop_control:
+    label: "{{ item.username }}"
+  notify: restart samba

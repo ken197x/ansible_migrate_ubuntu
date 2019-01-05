@@ -1,0 +1,49 @@
+# apt update & upgrade
+# パッケージインストール
+
+- name: aptリポジトリ追加 (certbot)
+  become: true
+  apt_repository:
+    repo: ppa:certbot/certbot
+    state: present
+
+- name: apt update & upgrade
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
+- name: パッケージインストール
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+    - emacs25-nox
+    - language-pack-ja
+    - apache2
+    - curl
+    - python3-pip
+    - certbot
+    - python-certbot-apache
+  notify: restart apache
+
+- name: Python3ライブラリインストール
+  become: true
+  pip:
+    name: mysqlclient
+
+- name: Apacheモジュール
+  become: true
+  apache2_module:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - 'authz_groupfile'
+    - 'rewrite'
+    - 'ssl'
+    - 'userdir'
+  notify: restart apache

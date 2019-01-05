@@ -1,0 +1,8 @@
+# 設定ファイルコピー
+
+- name: apache2.conf
+  become: true
+  copy:
+    src: "/etc/apache2/apache2.conf"
+    dest: "/etc/apache2/apache2.conf"
+    backup: yes

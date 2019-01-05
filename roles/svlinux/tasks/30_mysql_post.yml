@@ -1,0 +1,50 @@
+- name: MySQLデータベース削除
+  become: true
+  mysql_db:
+    state: absent
+    name: "{{ item }}"
+  with_items:
+    - 100
+    - bookmark
+    - dizmail
+    - dizmail6
+    - find_similar_filename
+    - kabu
+    - moodle
+    - tournament
+    - tv_reminder
+    - zanshin
+  notify: restart mysql
+
+- name: MySQLインポート
+  become: true
+  mysql_db:
+    state: import
+    name: "{{ item.db }}"
+    target: "/home/ken/ansible/tmp/{{ item.src }}.dump.sql"
+  with_items:
+    - { db: '100', src: '100' }
+    - { db: 'bookmark', src: 'bookmark' }
+    - { db: 'dizmail', src: 'dizmail' }
+    - { db: 'dizmail6', src: 'dizmail6' }
+    - { db: 'find_similar_filename', src: 'find_similar_filename' }
+    - { db: 'kabu', src: 'kabu' }
+    - { db: 'moodle', src: 'moodle' }
+    - { db: 'tournament', src: 'tournament' }
+    - { db: 'tv_reminder', src: 'tv_reminder' }
+    - { db: 'zanshin', src: 'zanshin' }
+  notify: restart mysql
+
+- name: MySQLユーザ作成 (ops)
+  become: true
+  mysql_user:
+    name: ops
+    password: "{{ mysql_ops_pass }}"
+  notify: restart mysql
+
+- name: MySQLユーザ作成 (app)
+  become: true
+  mysql_user:
+    name: app
+    password: "{{ mysql_app_pass }}"
+  notify: restart mysql

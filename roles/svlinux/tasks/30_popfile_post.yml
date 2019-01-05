@@ -1,0 +1,6 @@
+# POPFile起動
+# dbをコピーした後
+
+- name: popfile再起動
+  become: true
+  command: /etc/init.d/popfile start

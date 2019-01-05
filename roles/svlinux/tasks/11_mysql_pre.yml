@@ -1,0 +1,21 @@
+# MySQLインストール
+
+- name: MySQLインストール
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+    - mysql-server
+    - mysql-client
+    - libmysqlclient-dev
+  notify: restart mysql
+
+- name: MySQL初期設定
+  become: true
+  shell: mysql_secure_installation --use-default --password=setup
+  register: result
+  changed_when: "'VALIDATE PASSWORD PLUGIN' in result.stdout"
+  notify: restart mysql

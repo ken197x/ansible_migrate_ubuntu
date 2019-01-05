@@ -1,0 +1,39 @@
+- name: PHPインストール (MySQLインストールの後)
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+    - php7.2
+    - php7.2-cli
+    - php7.2-cgi
+    - php7.2-curl
+    - php7.2-intl
+    - php7.2-mysql
+    - libapache2-mod-php7.2
+    - phpmyadmin
+  notify:
+    - restart apache
+    - restart mysql
+
+- name: phpMyAdminリンク (1)
+  become: true
+  file:
+    src: /etc/phpmyadmin/apache.conf
+    dest: /etc/apache2/conf-available/phpmyadmin.conf
+    state: link
+  notify:
+    - restart apache
+    - restart mysql
+
+- name: phpMyAdminリンク (2)
+  become: true
+  file:
+    src: /etc/apache2/conf-available/phpmyadmin.conf
+    dest: /etc/apache2/conf-enabled/phpmyadmin.conf
+    state: link
+  notify:
+    - restart apache
+    - restart mysql

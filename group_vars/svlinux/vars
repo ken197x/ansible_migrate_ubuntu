@@ -1,0 +1,9 @@
+ansible_ssh_user: setup
+ansible_ssh_pass: "{{ vault_ansible_ssh_pass }}"
+ansible_become_pass: "{{ vault_ansible_become_pass }}"
+ansible_python_interpreter: /usr/bin/python3
+
+ken_pass: "{{ vault_ken_pass }}"
+
+mysql_ops_pass: "{{ vault_mysql_ops_pass }}"
+mysql_app_pass: "{{ vault_mysql_app_pass }}"

@@ -1,0 +1,25 @@
+# テンポラリディレクトリ作成＋ファイル圧縮
+# POPFileは停止していること
+
+- name: ローカル：テンポラリディレクトリ削除
+  file:
+    path: /home/ken/ansible/tmp
+    state: absent
+
+- name: ローカル：テンポラリディレクトリ作成
+  file:
+    path: /home/ken/ansible/tmp
+    state: directory
+
+- name: ローカル：ローカルディレクトリをアーカイブ (tarコマンド版)
+  become: true
+  command: tar czvf "/home/ken/ansible/tmp/{{ item.dest }}" "{{ item.src }}"
+  with_items:
+    - { src: '/home/ken/moodle_data', dest: 'moodle_data.tgz' }
+    - { src: '/home/ken/data', dest: 'data.tgz' }
+    - { src: '/home/ken/repositories', dest: 'repositories.tgz' }
+    # - { src: '/home/ken/public_html', dest: 'public_html.tgz' }
+    - { src: '/var/public_smb', dest: 'public_smb.tgz' }
+    - { src: '/var/www/html', dest: 'html.tgz' }
+    - { src: '/etc/popfile', dest: 'popfile_etc.tgz' }
+    - { src: '/var/lib/popfile', dest: 'popfile_lib.tgz' }

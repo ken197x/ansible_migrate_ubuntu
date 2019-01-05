@@ -1,0 +1,20 @@
+# ユーザ作成 + 公開鍵登録
+# ken
+
+- name: ユーザ作成
+  become: true
+  user:
+    name: ken
+    createhome: yes
+    # mkpasswd --method=SHA-512
+    password: "{{ ken_pass | password_hash('sha512') }}"
+    shell: /bin/bash
+    group: staff
+    groups: adm, cdrom, sudo, dip, plugdev, lxd
+    state: present
+
+- name: 公開鍵登録
+  become: true
+  authorized_key:
+    user: ken
+    key: "{{ lookup('file', '/home/ken/.ssh/authorized_keys') }}"

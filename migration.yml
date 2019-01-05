@@ -1,0 +1,7 @@
+# - hosts: local
+#   roles:
+#     - local
+
+- hosts: svlinux
+  roles:
+    - svlinux

@@ -1,0 +1,14 @@
+- name: restart apache
+  become: true
+  service: name=apache2 state=restarted
+
+- name: restart mysql
+  become: true
+  service: name=mysql state=restarted
+
+- name: restart samba
+  become: true
+  service: name={{ item }} state=restarted
+  with_items:
+    - smbd
+    - nmbd
