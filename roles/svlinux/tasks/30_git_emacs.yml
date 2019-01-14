@@ -1,0 +1,43 @@
+# .emacs.d git clone
+
+- name: 旧 .emacs.d削除
+  become: true
+  file:
+    path: /home/ken/.emacs.d
+    owner: ken
+    group: staff
+    state: absent
+
+- name: git clone .emacs.d
+  become: true
+  git:
+    repo: /home/ken/repositories/emacs.git
+    dest: /home/ken/.emacs.d
+    version: master
+  become_user: ken
+
+- name: リンク .gitconfig (.emacs.d)
+  become: true
+  file:
+    src: /home/ken/.emacs.d/.gitconfig_ken197x
+    dest: /home/ken/.gitconfig
+    owner: ken
+    group: staff
+    state: link
+
+- name: リンク .gitignore (.emacs.d)
+  become: true
+  become_user: ken
+  file:
+    src: /home/ken/.emacs.d/.gitignore_global
+    dest: /home/ken/.gitignore
+    state: link
+
+- name: .tmux.conf (.emacs.d)
+  become: true
+  template:
+    src: tmux.j2
+    dest: /home/ken/.tmux.conf
+    owner: ken
+    group: staff
+    mode: 0644

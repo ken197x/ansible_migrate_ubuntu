@@ -39,7 +39,7 @@
     - '/home/ken/moodle_data'
     - '/home/ken/data'
     - '/home/ken/repositories'
-    # - '/home/ken/public_html'
+    - '/home/ken/public_html'
     - '/var/public_smb'
     - '/var/www/html'
     - '/etc/popfile'
@@ -52,8 +52,17 @@
     - 'moodle_data.tgz'
     - 'data.tgz'
     - 'repositories.tgz'
-    # - 'public_html.tgz'
+    - 'public_html.tgz'
     - 'public_smb.tgz'
     - 'html.tgz'
     - 'popfile_etc.tgz'
     - 'popfile_lib.tgz'
+
+- name: 単発コピー mydns.jp
+  become: true
+  copy:
+    src: "/home/ken/mydns.sh"
+    dest: "/home/ken/mydns.sh"
+    owner: ken
+    group: staff
+    mode: 0755

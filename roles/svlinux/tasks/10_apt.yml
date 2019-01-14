@@ -29,6 +29,7 @@
     - python3-pip
     - certbot
     - python-certbot-apache
+    - composer
   notify: restart apache
 
 - name: Python3ライブラリインストール

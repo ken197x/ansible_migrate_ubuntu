@@ -9,3 +9,4 @@
 - include: 30_popfile_post.yml
 - include: 30_mysql_post.yml
 - include: 30_conf.yml
+- include: 30_git_emacs.yml
