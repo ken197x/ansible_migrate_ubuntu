@@ -33,7 +33,7 @@
     dest: /home/ken/.gitignore
     state: link
 
-- name: .tmux.conf (.emacs.d)
+- name: テンプレート .tmux.conf (.emacs.d)
   become: true
   template:
     src: tmux.j2

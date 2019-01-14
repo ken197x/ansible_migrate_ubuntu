@@ -1,20 +1,4 @@
-- name: テンポラリディレクトリ作成 (ansible)
-  become: true
-  file:
-    path: /home/ken/ansible
-    owner: ken
-    group: staff
-    state: directory
-
-- name: テンポラリディレクトリ削除 (tmp) ※ 古いのを削除するため
-  become: true
-  file:
-    path: /home/ken/ansible_tmp
-    owner: ken
-    group: staff
-    state: absent
-
-- name: テンポラリディレクトリ作成 (tmp)
+- name: テンポラリディレクトリ作成 (ansible_tmp)
   become: true
   file:
     path: /home/ken/ansible_tmp
@@ -26,7 +10,7 @@
   become: true
   copy:
     src: "/home/ken/ansible_tmp"
-    dest: "/home/ken/ansible"
+    dest: "/home/ken"
     owner: ken
     group: staff
 
@@ -59,27 +43,3 @@
     - 'html.tgz'
     - 'popfile_etc.tgz'
     - 'popfile_lib.tgz'
-
-- name: 単発コピー mydns.jp
-  become: true
-  copy:
-    src: "/home/ken/mydns.sh"
-    dest: "/home/ken/mydns.sh"
-    owner: ken
-    group: staff
-    mode: 0755
-
-- name: 単発コピー shell
-  become: true
-  copy:
-    src: "/home/ken/{{ item.src }}"
-    dest: "/home/ken/{{ item.dest }}"
-    owner: ken
-    group: staff
-    mode: 0644
-    backup: yes
-  with_items:
-    - { src: '.bash_logout', dest: '.bash_logout' }
-    - { src: '.bashrc', dest: '.bashrc' }
-    - { src: '.htpasswd', dest: '.htpasswd' }
-    - { src: '.profile', dest: '.profile' }

@@ -1,0 +1,37 @@
+# 単発コピー
+
+# 設定ファイル
+
+- name: コピー apache2.conf
+  become: true
+  copy:
+    src: "/etc/apache2/apache2.conf"
+    dest: "/etc/apache2/apache2.conf"
+    backup: yes
+
+
+# ユーザファイル
+
+- name: コピー mydns.jp
+  become: true
+  copy:
+    src: "/home/ken/mydns.sh"
+    dest: "/home/ken/mydns.sh"
+    owner: ken
+    group: staff
+    mode: 0755
+
+- name: コピー shell
+  become: true
+  copy:
+    src: "/home/ken/{{ item.src }}"
+    dest: "/home/ken/{{ item.dest }}"
+    owner: ken
+    group: staff
+    mode: 0644
+    backup: yes
+  with_items:
+    - { src: '.bash_logout', dest: '.bash_logout' }
+    - { src: '.bashrc', dest: '.bashrc' }
+    - { src: '.htpasswd', dest: '.htpasswd' }
+    - { src: '.profile', dest: '.profile' }
