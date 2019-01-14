@@ -21,7 +21,7 @@
   mysql_db:
     state: import
     name: "{{ item.db }}"
-    target: "/home/ken/ansible/tmp/{{ item.src }}.dump.sql.gz"
+    target: "/home/ken/ansible_tmp/{{ item.src }}.dump.sql.gz"
   with_items:
     - { db: '100', src: '100' }
     - { db: 'bookmark', src: 'bookmark' }

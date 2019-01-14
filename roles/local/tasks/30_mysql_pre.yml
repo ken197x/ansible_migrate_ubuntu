@@ -4,7 +4,7 @@
     login_user: root
     login_password: "{{ vault_mysql_pass }}"
     name: "{{ item.db }}"
-    target: "/home/ken/ansible/tmp/{{ item.dest }}.dump.sql.gz"
+    target: "/home/ken/ansible_tmp/{{ item.dest }}.dump.sql.gz"
   with_items:
     - { db: '100', dest: '100' }
     - { db: 'bookmark', dest: 'bookmark' }

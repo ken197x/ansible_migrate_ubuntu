@@ -3,17 +3,17 @@
 
 - name: ローカル：テンポラリディレクトリ削除
   file:
-    path: /home/ken/ansible/tmp
+    path: /home/ken/ansible_tmp
     state: absent
 
 - name: ローカル：テンポラリディレクトリ作成
   file:
-    path: /home/ken/ansible/tmp
+    path: /home/ken/ansible_tmp
     state: directory
 
 - name: ローカル：ローカルディレクトリをアーカイブ (tarコマンド版)
   become: true
-  command: tar czvf "/home/ken/ansible/tmp/{{ item.dest }}" "{{ item.src }}"
+  command: tar czvf "/home/ken/ansible_tmp/{{ item.dest }}" "{{ item.src }}"
   with_items:
     - { src: '/home/ken/moodle_data', dest: 'moodle_data.tgz' }
     - { src: '/home/ken/data', dest: 'data.tgz' }

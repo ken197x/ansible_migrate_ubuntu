@@ -9,7 +9,7 @@
 - name: テンポラリディレクトリ削除 (tmp) ※ 古いのを削除するため
   become: true
   file:
-    path: /home/ken/ansible/tmp
+    path: /home/ken/ansible_tmp
     owner: ken
     group: staff
     state: absent
@@ -17,7 +17,7 @@
 - name: テンポラリディレクトリ作成 (tmp)
   become: true
   file:
-    path: /home/ken/ansible/tmp
+    path: /home/ken/ansible_tmp
     owner: ken
     group: staff
     state: directory
@@ -25,7 +25,7 @@
 - name: アーカイブしたファイル(ディレクトリ)をコピー (ローカル → リモート)
   become: true
   copy:
-    src: "/home/ken/ansible/tmp"
+    src: "/home/ken/ansible_tmp"
     dest: "/home/ken/ansible"
     owner: ken
     group: staff
@@ -47,7 +47,7 @@
 
 - name: アーカイブを解凍 (アーカイブ時にパス指定がルートからなのでルートで解凍)
   become: true
-  command: tar xzvf "/home/ken/ansible/tmp/{{ item }}" -C /
+  command: tar xzvf "/home/ken/ansible_tmp/{{ item }}" -C /
   with_items:
     - 'moodle_data.tgz'
     - 'data.tgz'
