@@ -1,12 +1,12 @@
 - include: 10_apt.yml
-# - include: 11_locale.yml
-# - include: 11_mysql_pre.yml
-# - include: 11_popfile_pre.yml
-# - include: 11_samba.yml
-# - include: 11_user_ken.yml
-# - include: 12_php.yml
-# - include: 20_archive_copy.yml
-# - include: 20_copy.yml
-# - include: 30_git_emacs.yml
-# - include: 30_popfile_post.yml
-# - include: 30_mysql_post.yml
+- include: 11_locale.yml
+- include: 11_mysql_pre.yml
+- include: 11_popfile_pre.yml
+- include: 11_samba.yml
+- include: 11_user_ken.yml
+- include: 12_php.yml
+- include: 20_archive_copy.yml
+- include: 20_copy.yml
+- include: 30_git_emacs.yml
+- include: 30_popfile_post.yml
+- include: 30_mysql_post.yml
