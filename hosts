@@ -1,5 +1,5 @@
-[svlinux]
-sl3
-
-[local]
+[migrate_from]
 localhost
+
+[migrate_to]
+sl3

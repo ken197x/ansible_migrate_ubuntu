@@ -1,7 +1,9 @@
-- hosts: local
-  roles:
-    - local
+# 移管元 (localhost/svlinux)
+# - hosts: migrate_from
+#   roles:
+#     - migrate_from
 
-- hosts: svlinux
+# 移管先 (sl3/svlinux3)
+- hosts: migrate_to
   roles:
-    - svlinux
+    - migrate_to
