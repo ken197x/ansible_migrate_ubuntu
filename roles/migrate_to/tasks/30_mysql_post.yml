@@ -8,8 +8,6 @@
     - bookmark
     - dizmail
     - dizmail6
-    - find_similar_filename
-    - kabu
     - moodle
     - tournament
     - tv_reminder
@@ -27,8 +25,6 @@
     - { db: 'bookmark', src: 'bookmark' }
     - { db: 'dizmail', src: 'dizmail' }
     - { db: 'dizmail6', src: 'dizmail6' }
-    - { db: 'find_similar_filename', src: 'find_similar_filename' }
-    - { db: 'kabu', src: 'kabu' }
     - { db: 'moodle', src: 'moodle' }
     - { db: 'tournament', src: 'tournament' }
     - { db: 'tv_reminder', src: 'tv_reminder' }

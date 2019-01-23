@@ -10,8 +10,6 @@
     - { db: 'bookmark', dest: 'bookmark' }
     - { db: 'dizmail', dest: 'dizmail' }
     - { db: 'dizmail6', dest: 'dizmail6' }
-    - { db: 'find_similar_filename', dest: 'find_similar_filename' }
-    - { db: 'kabu', dest: 'kabu' }
     - { db: 'moodle', dest: 'moodle' }
     - { db: 'tournament', dest: 'tournament' }
     - { db: 'tv_reminder', dest: 'tv_reminder' }
