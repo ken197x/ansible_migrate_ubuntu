@@ -10,11 +10,12 @@
 
 - name: git clone .emacs.d
   become: true
-  git:
-    repo: /home/ken/repositories/emacs.git
-    dest: /home/ken/.emacs.d
-    version: master
   become_user: ken
+  git:
+    repo: git@github.com:ken197x/emacs.git
+    dest: /home/ken/.emacs.d
+    accept_hostkey: yes
+    version: master
 
 - name: リンク .gitconfig (.emacs.d)
   become: true

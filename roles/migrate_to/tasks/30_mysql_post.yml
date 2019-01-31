@@ -9,6 +9,7 @@
     - dizmail
     - dizmail6
     - moodle
+    - suyama
     - tournament
     - tv_reminder
     - zanshin
@@ -26,6 +27,7 @@
     - { db: 'dizmail', src: 'dizmail' }
     - { db: 'dizmail6', src: 'dizmail6' }
     - { db: 'moodle', src: 'moodle' }
+    - { db: 'suyama', src: 'suyama' }
     - { db: 'tournament', src: 'tournament' }
     - { db: 'tv_reminder', src: 'tv_reminder' }
     - { db: 'zanshin', src: 'zanshin' }

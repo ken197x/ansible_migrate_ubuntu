@@ -11,6 +11,7 @@
     - { db: 'dizmail', dest: 'dizmail' }
     - { db: 'dizmail6', dest: 'dizmail6' }
     - { db: 'moodle', dest: 'moodle' }
+    - { db: 'suyama', dest: 'suyama' }
     - { db: 'tournament', dest: 'tournament' }
     - { db: 'tv_reminder', dest: 'tv_reminder' }
     - { db: 'zanshin', dest: 'zanshin' }
