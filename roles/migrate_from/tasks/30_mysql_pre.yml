@@ -10,8 +10,13 @@
     - { db: 'bookmark', dest: 'bookmark' }
     - { db: 'dizmail', dest: 'dizmail' }
     - { db: 'dizmail6', dest: 'dizmail6' }
+    - { db: 'find_similar_filename', dest: 'find_similar_filename' }
+    - { db: 'kabu', dest: 'kabu' }
     - { db: 'moodle', dest: 'moodle' }
+    - { db: 'mt1', dest: 'mt1' }
     - { db: 'suyama', dest: 'suyama' }
+    - { db: 'terminalroad_dev2', dest: 'terminalroad_dev2' }
+    - { db: 'terminalroad_production', dest: 'terminalroad_production' }
     - { db: 'tournament', dest: 'tournament' }
-    - { db: 'tv_reminder', dest: 'tv_reminder' }
+    - { db: 'tv', dest: 'tv' }
     - { db: 'zanshin', dest: 'zanshin' }

@@ -8,10 +8,15 @@
     - bookmark
     - dizmail
     - dizmail6
+    - find_similar_filename
+    - kabu
     - moodle
+    - mt1
     - suyama
+    - terminalroad_dev2
+    - terminalroad_production
     - tournament
-    - tv_reminder
+    - tv
     - zanshin
   notify: restart mysql
 
@@ -22,15 +27,20 @@
     name: "{{ item.db }}"
     target: "/home/ken/ansible_tmp/{{ item.src }}.dump.sql.gz"
   with_items:
-    - { db: '100', src: '100' }
-    - { db: 'bookmark', src: 'bookmark' }
-    - { db: 'dizmail', src: 'dizmail' }
-    - { db: 'dizmail6', src: 'dizmail6' }
-    - { db: 'moodle', src: 'moodle' }
-    - { db: 'suyama', src: 'suyama' }
-    - { db: 'tournament', src: 'tournament' }
-    - { db: 'tv_reminder', src: 'tv_reminder' }
-    - { db: 'zanshin', src: 'zanshin' }
+    - { db: '100', dest: '100' }
+    - { db: 'bookmark', dest: 'bookmark' }
+    - { db: 'dizmail', dest: 'dizmail' }
+    - { db: 'dizmail6', dest: 'dizmail6' }
+    - { db: 'find_similar_filename', dest: 'find_similar_filename' }
+    - { db: 'kabu', dest: 'kabu' }
+    - { db: 'moodle', dest: 'moodle' }
+    - { db: 'mt1', dest: 'mt1' }
+    - { db: 'suyama', dest: 'suyama' }
+    - { db: 'terminalroad_dev2', dest: 'terminalroad_dev2' }
+    - { db: 'terminalroad_production', dest: 'terminalroad_production' }
+    - { db: 'tournament', dest: 'tournament' }
+    - { db: 'tv', dest: 'tv' }
+    - { db: 'zanshin', dest: 'zanshin' }
   notify: restart mysql
 
 - name: MySQLユーザ作成 (ops)
