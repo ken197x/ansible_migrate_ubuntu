@@ -21,9 +21,8 @@
     state: absent
   with_items:
     - '/home/ken/ansible'
-    - '/home/ken/moodle_data'
     - '/home/ken/data'
-    - '/home/ken/repositories'
+    - '/home/ken/moodle_data'
     - '/home/ken/public_html'
     - '/var/public_smb'
     - '/var/www/html'
@@ -35,9 +34,8 @@
   command: tar xzvf "/home/ken/ansible_tmp/{{ item }}" -C /
   with_items:
     - 'ansible.tgz'
-    - 'moodle_data.tgz'
     - 'data.tgz'
-    - 'repositories.tgz'
+    - 'moodle_data.tgz'
     - 'public_html.tgz'
     - 'public_smb.tgz'
     - 'html.tgz'
