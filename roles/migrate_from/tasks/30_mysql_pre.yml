@@ -1,7 +1,7 @@
 - name: MySQL：ダンプ
   mysql_db:
     state: dump
-    login_user: root
+    login_user: ops
     login_password: "{{ vault_mysql_pass }}"
     name: "{{ item.db }}"
     target: "/home/ken/ansible_tmp/{{ item.dest }}.dump.sql.gz"
