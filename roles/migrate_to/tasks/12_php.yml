@@ -6,13 +6,13 @@
     update_cache: yes
   vars:
     packages:
-    - php7.4
-    - php7.4-cli
-    - php7.4-cgi
-    - php7.4-curl
-    - php7.4-intl
-    - php7.4-mysql
-    - libapache2-mod-php7.4
+    - php
+    - php-cli
+    - php-cgi
+    - php-curl
+    - php-intl
+    - php-mysql
+    - libapache2-mod-php
     - phpmyadmin
   notify:
     - restart apache
