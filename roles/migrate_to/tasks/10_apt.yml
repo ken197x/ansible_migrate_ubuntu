@@ -22,7 +22,7 @@
     update_cache: yes
   vars:
     packages:
-    - emacs25-nox
+    - emacs26-nox
     - language-pack-ja
     - apache2
     - curl
