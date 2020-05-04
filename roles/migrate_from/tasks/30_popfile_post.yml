@@ -2,4 +2,4 @@
 
 - name: popfile再起動
   become: true
-  command: /etc/init.d/popfile start
+  service: name=popfile state=started
