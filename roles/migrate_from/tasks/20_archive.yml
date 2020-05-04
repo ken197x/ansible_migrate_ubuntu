@@ -15,6 +15,9 @@
   become: true
   command: tar czvf "/home/ken/ansible_tmp/{{ item.dest }}" "{{ item.src }}"
   with_items:
+    - { src: '/home/ken/.config', dest: '.config.tgz' }
+    - { src: '/home/ken/.emacs.d', dest: '.emacs.d.tgz' }
+    - { src: '/home/ken/.local', dest: '.local.tgz' }
     - { src: '/home/ken/ansible', dest: 'ansible.tgz' }
     - { src: '/home/ken/data', dest: 'data.tgz' }
     - { src: '/home/ken/moodle_data', dest: 'moodle_data.tgz' }
