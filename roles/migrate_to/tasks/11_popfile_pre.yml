@@ -16,4 +16,4 @@
 
 - name: popfile停止
   become: true
-  command: /etc/init.d/popfile stop
+  service: name=popfile state=stopped
