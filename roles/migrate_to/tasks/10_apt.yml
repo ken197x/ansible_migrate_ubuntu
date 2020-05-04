@@ -38,6 +38,12 @@
     - 'userdir'
   notify: restart apache
 
+- name: powerline-status
+  become: yes
+  become_user: ken
+  pip:
+    name: powerline-status
+
 - name: powerline-shell
   become: yes
   become_user: ken
