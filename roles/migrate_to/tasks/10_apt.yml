@@ -1,12 +1,6 @@
 # apt update & upgrade
 # パッケージインストール
 
-- name: aptリポジトリ追加 (certbot)
-  become: true
-  apt_repository:
-    repo: ppa:certbot/certbot
-    state: present
-
 - name: apt update & upgrade
   become: true
   apt:
@@ -22,20 +16,15 @@
     update_cache: yes
   vars:
     packages:
-    - emacs26-nox
+    - emacs-nox
     - language-pack-ja
     - apache2
     - curl
     - python3-pip
     - certbot
-    - python-certbot-apache
+    - python3-certbot-apache
     - composer
   notify: restart apache
-
-- name: Python3ライブラリインストール
-  become: true
-  pip:
-    name: mysqlclient
 
 - name: Apacheモジュール
   become: true
@@ -48,3 +37,9 @@
     - 'ssl'
     - 'userdir'
   notify: restart apache
+
+- name: powerline-shell
+  become: yes
+  become_user: ken
+  pip:
+    name: powerline-shell

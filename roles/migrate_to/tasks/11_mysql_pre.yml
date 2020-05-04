@@ -1,5 +1,4 @@
 # MySQLインストール
-
 - name: MySQLインストール
   become: true
   apt:
@@ -19,3 +18,8 @@
   register: result
   changed_when: "'VALIDATE PASSWORD PLUGIN' in result.stdout"
   notify: restart mysql
+
+- name: Python3ライブラリインストール
+  become: true
+  pip:
+    name: mysqlclient
