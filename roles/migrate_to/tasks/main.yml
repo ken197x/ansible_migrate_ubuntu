@@ -7,6 +7,7 @@
 - include: 12_samba.yml
 - include: 20_archive_copy.yml
 - include: 20_copy.yml
+- include: 20_crontab.yml
 - include: 30_git_emacs.yml
 - include: 30_popfile_post.yml
 - include: 30_mysql_post.yml

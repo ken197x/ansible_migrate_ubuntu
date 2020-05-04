@@ -1,0 +1,8 @@
+# crontab出力
+
+- name: crontab出力
+  become: yes
+  become_user: ken
+  shell: crontab -l > /home/ken/crontab
+  args:
+    warn: no

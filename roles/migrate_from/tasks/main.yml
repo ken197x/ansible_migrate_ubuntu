@@ -1,3 +1,4 @@
+- include: 10_crontab.yml
 - include: 10_popfile_pre.yml
 - include: 20_archive.yml
 - include: 30_mysql_pre.yml
