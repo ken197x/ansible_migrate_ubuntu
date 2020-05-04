@@ -1,21 +1,20 @@
 # .emacs.d git clone
 
-- name: 旧 .emacs.d削除
-  become: true
-  file:
-    path: /home/ken/.emacs.d
-    owner: ken
-    group: staff
-    state: absent
+# - name: 旧 .emacs.d削除
+#   become: true
+#   file:
+#     path: /home/ken/.emacs.d
+#     owner: ken
+#     group: staff
+#     state: absent
 
-- name: git clone .emacs.d
-  become: true
-  become_user: ken
-  git:
-    repo: git@github.com:ken197x/emacs.git
-    dest: /home/ken/.emacs.d
-    accept_hostkey: yes
-    version: master
+# - name: git clone .emacs.d
+#   become: true
+#   git:
+#     repo: git@github.com:ken197x/emacs.git
+#     dest: /home/ken/.emacs.d
+#     accept_hostkey: yes
+#     version: master
 
 - name: リンク .gitconfig (.emacs.d)
   become: true
@@ -28,10 +27,20 @@
 
 - name: リンク .gitignore (.emacs.d)
   become: true
-  become_user: ken
   file:
     src: /home/ken/.emacs.d/.gitignore_global
     dest: /home/ken/.gitignore
+    owner: ken
+    group: staff
+    state: link
+
+- name: リンク .gitignore (.emacs.d)
+  become: true
+  file:
+    src: /home/ken/.emacs.d/ssh_config_ken197x
+    dest: /home/ken/.ssh/config
+    owner: ken
+    group: staff
     state: link
 
 - name: テンプレート .tmux.conf (.emacs.d)
@@ -42,3 +51,21 @@
     owner: ken
     group: staff
     mode: 0644
+
+- name: chown .gitconfig
+  become: true
+  shell: chown -h ken.staff /home/ken/.gitconfig
+  args:
+    warn: no
+
+- name: chown .gitignore
+  become: true
+  shell: chown -h ken.staff /home/ken/.gitignore
+  args:
+    warn: no
+
+- name: chown .ssh/config
+  become: true
+  shell: chown -h ken.staff /home/ken/.ssh/config
+  args:
+    warn: no
