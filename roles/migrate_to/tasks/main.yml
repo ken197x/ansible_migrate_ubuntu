@@ -5,6 +5,7 @@
 - include: 11_user_ken.yml
 - include: 12_php.yml
 - include: 12_samba.yml
+- include: 20_apt_user.yml
 - include: 20_archive_copy.yml
 - include: 20_copy.yml
 - include: 20_crontab.yml
