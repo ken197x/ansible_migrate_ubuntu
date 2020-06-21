@@ -20,7 +20,6 @@
     - { src: '/home/ken/.local', dest: '.local.tgz' }
     - { src: '/home/ken/ansible', dest: 'ansible.tgz' }
     - { src: '/home/ken/data', dest: 'data.tgz' }
-    - { src: '/home/ken/moodle_data', dest: 'moodle_data.tgz' }
     - { src: '/home/ken/public_html', dest: 'public_html.tgz' }
     - { src: '/var/public_smb', dest: 'public_smb.tgz' }
     - { src: '/var/www/html', dest: 'html.tgz' }

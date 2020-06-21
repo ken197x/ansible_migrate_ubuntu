@@ -4,8 +4,8 @@
 - name: apt update & upgrade
   become: true
   apt:
-    upgrade: yes
-    update_cache: yes
+    upgrade: 'yes'
+    update_cache: 'yes'
     cache_valid_time: 86400 #One day
 
 - name: パッケージインストール
@@ -13,7 +13,6 @@
   apt:
     name: "{{ packages }}"
     state: latest
-    update_cache: yes
   vars:
     packages:
     - emacs-nox
@@ -37,15 +36,3 @@
     - 'ssl'
     - 'userdir'
   notify: restart apache
-
-- name: powerline-status
-  become: yes
-  become_user: ken
-  pip:
-    name: powerline-status
-
-- name: powerline-shell
-  become: yes
-  become_user: ken
-  pip:
-    name: powerline-shell
