@@ -1,0 +1,10 @@
+# targetをマイグレする
+
+# ansible-playbook 2_migrate_target.yml -e 'copy=1'
+# copy=1 を指定すると sourceから target にファイルをコピーする
+# copy=1 を指定しないと target の ~/ansible_tmp にコピー済みのデータがあることを期待する（再コピーを行わない）
+
+- name: migrate target
+  hosts: target
+  roles:
+    - role: 2_migrate_target

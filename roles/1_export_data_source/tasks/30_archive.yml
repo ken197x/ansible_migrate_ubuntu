@@ -1,0 +1,30 @@
+# テンポラリディレクトリ作成＋ファイル圧縮
+# POPFileは停止していること
+
+- name: ローカル：テンポラリディレクトリ削除
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/ansible_tmp"
+    state: absent
+
+- name: ローカル：テンポラリディレクトリ作成
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/ansible_tmp"
+    state: directory
+
+- name: ローカル：ローカルディレクトリをアーカイブ (tarコマンド版)
+  become: true
+  ansible.builtin.command: tar -czf "/home/{{ user_name}}/ansible_tmp/{{ item.dest }}" "{{ item.src }}"
+  with_items:
+    - { src: "/home/{{ user_name}}/.config", dest: 'home_.config.tgz' }
+    - { src: "/home/{{ user_name}}/.emacs.d", dest: 'home_.emacs.d.tgz' }
+    - { src: "/home/{{ user_name}}/.local", dest: 'home_.local.tgz' }
+    - { src: "/home/{{ user_name}}/.ssh", dest: 'home_.ssh.tgz' }
+    - { src: "/home/{{ user_name}}/ansible", dest: 'home_ansible.tgz' }
+    - { src: "/home/{{ user_name}}/data", dest: 'home_data.tgz' }
+    - { src: "/home/{{ user_name}}/public_html", dest: 'home_public_html.tgz' }
+    - { src: "/home/{{ user_name}}/sql", dest: 'home_sql.tgz' }
+    - { src: "/home/{{ user_name}}/tmp", dest: 'home_tmp.tgz' }
+    - { src: '/var/lib/popfile', dest: 'var_popfile.tgz' }
+    - { src: '/var/public_smb', dest: 'var_public_smb.tgz' }
+    - { src: '/var/www/html', dest: 'var_html.tgz' }
+    - { src: '/etc/letsencrypt', dest: 'etc_letsencrypt.tgz' }

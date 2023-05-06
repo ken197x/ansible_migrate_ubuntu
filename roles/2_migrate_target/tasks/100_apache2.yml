@@ -1,0 +1,60 @@
+# apache2
+# パッケージインストール
+# モジュール導入
+
+- name: パッケージインストール
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - apache2
+  notify: restart apache
+
+- name: Apache停止
+  become: true
+  ansible.builtin.service:
+    name: apache2
+    state: stopped
+
+- name: Apacheモジュール
+  become: true
+  community.general.apache2_module:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - 'authz_groupfile'
+    - 'rewrite'
+    - 'ssl'
+    - 'userdir'
+  notify: restart apache
+
+- name: Apacheサイト
+  command: a2ensite "{{ item }}"
+  become: yes
+  become_method: sudo
+  with_items:
+    - access_local
+    - access_phpmyadmin
+    - 000-default-le-ssl
+  notify: restart apache
+
+- name: Apacheサーバ名置換
+  become: true
+  ansible.builtin.replace:
+    path: /etc/apache2/sites-available/000-default.conf
+    regexp: "#ServerName www.example.com"
+    replace: "ServerName ken197x.space"
+    backup: true
+  notify: restart apache
+
+- name: ApacheユーザディレクトリでPHP許可
+  become: true
+  ansible.builtin.replace:
+    path: /etc/apache2/mods-available/php8.1.conf
+    after: "# prevents .htaccess files from disabling it."
+    regexp: '^(.*)$'
+    replace: '# \1'
+    backup: true
+  notify: restart apache

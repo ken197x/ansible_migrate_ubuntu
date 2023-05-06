@@ -2,4 +2,6 @@ ansible_connection: local
 ansible_become_pass: "{{ vault_ansible_become_pass }}"
 ansible_python_interpreter: /usr/bin/python3
 
+user_name: "{{ vault_user_name }}"
+
 mysql_pass: "{{ vault_mysql_pass }}"

@@ -1,0 +1,23 @@
+# crontab設定
+
+- name: crontab：適用（ユーザ）
+  become: yes
+  become_user: "{{ user_name }}"
+  ansible.builtin.shell: "crontab /home/{{ user_name }}/crontab"
+  args:
+    warn: no
+
+- name: crontab：作業ファイル削除
+  become: true
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/crontab"
+    owner: "{{ user_name }}"
+    group: staff
+    state: absent
+
+- name: crontab：適用 (root)
+  become: true
+  ansible.builtin.cron:
+    minute: "43"
+    hour: "3"
+    job: "/usr/bin/certbot renew --quiet"

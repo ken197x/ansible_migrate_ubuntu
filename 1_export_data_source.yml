@@ -1,0 +1,11 @@
+# sourceからデータを抽出する
+
+# ansible-playbook 1_export_data_source.yml -e 'copy=1'
+# 基本的に copy=1 にしないと実行しない
+# 抽出されたデータは ~/ansible_tmp に格納される
+
+- name: export data source
+  hosts: source
+  roles:
+    - role: 1_export_data_source
+      when: copy is defined

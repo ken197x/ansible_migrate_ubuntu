@@ -1,0 +1,12 @@
+- name: MySQL：ダンプ
+  community.mysql.mysql_db:
+    state: dump
+    login_user: ops
+    login_password: "{{ vault_mysql_pass }}"
+    name: "{{ item.db }}"
+    target: "/home/{{ user_name }}/ansible_tmp/{{ item.dest }}.dump.sql.gz"
+  with_items:
+    - { db: 'bookmark', dest: 'bookmark' }
+    - { db: 'tv', dest: 'tv' }
+    - { db: 'wordpress', dest: 'wordpress' }
+    - { db: 'wordpress2', dest: 'wordpress2' }

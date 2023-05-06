@@ -1,0 +1,23 @@
+# apt update & upgrade
+# パッケージインストール
+
+- name: apt update & upgrade
+  become: true
+  ansible.builtin.apt:
+    upgrade: 'yes'
+    update_cache: 'yes'
+    cache_valid_time: 86400 #One day
+
+- name: パッケージインストール
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - language-pack-ja
+    - curl
+    - python3-pip
+    - certbot
+    - python3-certbot-apache
+    - ansible

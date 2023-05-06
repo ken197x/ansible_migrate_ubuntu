@@ -1,0 +1,19 @@
+# ロケール＋タイムゾーン設定
+
+- name: ロケール生成
+  become: true
+  community.general.locale_gen:
+    name: ja_JP.UTF-8
+
+- name: ロケール設定
+  become: true
+  ansible.builtin.shell: >
+    (locale | grep 'LANG=ja_JP.UTF-8' 2>&1 > /dev/null)
+    || (update-locale LANG=ja_JP.UTF-8 && echo "changed")
+  register: result
+  changed_when: "'changed' in result.stdout"
+
+- name: タイムゾーン設定
+  become: true
+  community.general.timezone:
+    name: Asia/Tokyo
