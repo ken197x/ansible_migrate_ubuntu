@@ -1,0 +1,3 @@
+- include_tasks: 100_popfile.yml
+- include_tasks: 110_crontab.yml
+- include_tasks: 120_delete_setup.yml

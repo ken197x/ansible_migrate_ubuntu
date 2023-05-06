@@ -1,0 +1,9 @@
+# 後片付け
+# IP変更後の新規サーバで実行
+
+# ansible-playbook 9_cleanup.yml
+
+- name: cleanup
+  hosts: localhost
+  roles:
+    - 9_cleanup

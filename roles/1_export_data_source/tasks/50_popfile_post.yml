@@ -1,0 +1,5 @@
+# POPFile起動 (元に戻す)
+
+- name: popfile再起動
+  become: true
+  ansible.builtin.service: name=popfile state=started

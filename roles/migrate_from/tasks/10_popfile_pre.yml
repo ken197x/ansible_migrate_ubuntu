@@ -1,5 +1,0 @@
-# POPFile停止
-
-- name: popfile停止
-  become: true
-  service: name=popfile state=stopped

@@ -1,0 +1,8 @@
+# crontab出力
+
+- name: crontab出力
+  become: yes
+  become_user: "{{ user_name }}"
+  ansible.builtin.shell: "crontab -l > /home/{{ user_name }}/crontab"
+  args:
+    warn: no

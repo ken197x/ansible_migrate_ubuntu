@@ -1,0 +1,16 @@
+- include_tasks: 000_apt.yml
+- include_tasks: 010_locale.yml
+- include_tasks: 020_mysql_pre.yml
+- include_tasks: 030_popfile_pre.yml
+- include_tasks: 040_add_user.yml
+- include_tasks: 050_php.yml
+- include_tasks: 060_samba.yml
+
+- include_tasks: 080_archive_copy.yml
+  when: copy is defined
+- include_tasks: 090_copy.yml
+  when: copy is defined
+
+- include_tasks: 100_apache2.yml
+- include_tasks: 110_git_emacs.yml
+- include_tasks: 120_mysql_post.yml

@@ -1,6 +1,0 @@
-# POPFile起動
-# dbをコピーした後
-
-- name: popfile再起動
-  become: true
-  service: name=popfile state=started

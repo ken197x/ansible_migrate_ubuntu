@@ -1,0 +1,42 @@
+# 単発コピー
+
+# 設定ファイル
+
+- name: コピー apache2
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ item  }}"
+    backup: yes
+  with_items:
+    - '/etc/apache2/apache2.conf'
+    - '/etc/apache2/sites-available/access_local.conf'
+    - '/etc/apache2/sites-available/access_phpmyadmin.conf'
+    - '/etc/apache2/sites-available/000-default-le-ssl.conf'
+
+# ユーザファイル
+
+- name: コピー mydns.jp
+  become: true
+  ansible.builtin.copy:
+    src: "/home/{{ user_name }}/mydns.sh"
+    dest: "/home/{{ user_name }}/mydns.sh"
+    owner: "{{ user_name }}"
+    group: staff
+    mode: 0755
+
+- name: コピー shell
+  become: true
+  ansible.builtin.copy:
+    src: "/home/{{ user_name }}/{{ item.src }}"
+    dest: "/home/{{ user_name }}/{{ item.dest }}"
+    owner: "{{ user_name }}"
+    group: staff
+    mode: 0644
+    backup: yes
+  with_items:
+    - { src: '.bash_logout', dest: '.bash_logout' }
+    - { src: '.bashrc', dest: '.bashrc' }
+    - { src: '.htpasswd', dest: '.htpasswd' }
+    - { src: '.profile', dest: '.profile' }
+    - { src: 'crontab', dest: 'crontab' }

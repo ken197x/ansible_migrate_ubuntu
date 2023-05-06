@@ -1,0 +1,53 @@
+- name: テンポラリディレクトリ作成 (ansible_tmp)
+  become: true
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/ansible_tmp"
+    owner: "{{ user_name }}"
+    group: staff
+    state: directory
+
+- name: アーカイブしたファイル(ディレクトリ)をコピー (ローカル → リモート)
+  become: true
+  ansible.builtin.copy:
+    src: "/home/{{ user_name }}/ansible_tmp"
+    dest: "/home/{{ user_name }}"
+    owner: "{{ user_name }}"
+    group: staff
+
+- name: (解凍上書き前に) 転送先のディレクトリを削除
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/home/{{ user_name }}/.config"
+    - "/home/{{ user_name }}/.emacs.d"
+    - "/home/{{ user_name }}/.local"
+    - "/home/{{ user_name }}/.ssh"
+    - "/home/{{ user_name }}/ansible"
+    - "/home/{{ user_name }}/data"
+    - "/home/{{ user_name }}/public_html"
+    - "/home/{{ user_name }}/sql"
+    - "/home/{{ user_name }}/tmp"
+    - '/var/lib/popfile'
+    - '/var/public_smb'
+    - '/var/www/html'
+    - '/etc/letsencrypt'
+
+- name: アーカイブを解凍 (アーカイブ時にパス指定がルートからなのでルートで解凍)
+  become: true
+  ansible.builtin.command: tar -xzf "/home/{{ user_name }}/ansible_tmp/{{ item }}" -C /
+  with_items:
+    - 'home_.config.tgz'
+    - 'home_.emacs.d.tgz'
+    - 'home_.local.tgz'
+    - 'home_.ssh.tgz'
+    - 'home_ansible.tgz'
+    - 'home_data.tgz'
+    - 'home_public_html.tgz'
+    - 'home_sql.tgz'
+    - 'home_tmp.tgz'
+    # - 'var_popfile.tgz' # popfile は移管が終わった後
+    - 'var_public_smb.tgz'
+    - 'var_html.tgz'
+    - 'etc_letsencrypt.tgz'

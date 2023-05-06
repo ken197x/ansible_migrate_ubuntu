@@ -1,0 +1,38 @@
+- name: PHPインストール (MySQLインストールの後)
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - php
+    - php-cli
+    - php-cgi
+    - php-curl
+    - php-intl
+    - php-mysql
+    - libapache2-mod-php
+    - phpmyadmin
+  notify:
+    - restart apache
+    - restart mysql
+
+- name: phpMyAdminリンク (1)
+  become: true
+  ansible.builtin.file:
+    src: /etc/phpmyadmin/apache.conf
+    dest: /etc/apache2/conf-available/phpmyadmin.conf
+    state: link
+  notify:
+    - restart apache
+    - restart mysql
+
+- name: phpMyAdminリンク (2)
+  become: true
+  ansible.builtin.file:
+    src: /etc/apache2/conf-available/phpmyadmin.conf
+    dest: /etc/apache2/conf-enabled/phpmyadmin.conf
+    state: link
+  notify:
+    - restart apache
+    - restart mysql

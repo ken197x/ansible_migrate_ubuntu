@@ -1,0 +1,6 @@
+- name: ユーザ削除：setup
+  become: true
+  ansible.builtin.user:
+    name: setup
+    remove: yes
+    state: absent

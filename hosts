@@ -1,5 +1,5 @@
-[migrate_from]
+[source]
 localhost
 
-[migrate_to]
+[target]
 sl2
