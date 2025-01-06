@@ -4,5 +4,3 @@
   become: yes
   become_user: "{{ user_name }}"
   ansible.builtin.shell: "crontab -l > /home/{{ user_name }}/crontab"
-  args:
-    warn: no

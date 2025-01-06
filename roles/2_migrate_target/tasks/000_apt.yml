@@ -20,4 +20,5 @@
     - python3-pip
     - certbot
     - python3-certbot-apache
+    - python3-pymysql
     - ansible

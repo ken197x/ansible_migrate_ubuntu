@@ -10,8 +10,8 @@
     packages:
     - popfile
     - libtext-kakasi-perl
-    - sqlite
-    - libdbd-sqlite2-perl
+    - sqlite3
+    - libdbd-sqlite3-perl
 
 - name: popfile停止
   become: true

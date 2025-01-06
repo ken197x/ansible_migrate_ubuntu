@@ -1,22 +1,5 @@
 # .emacs.d git clone
 
-# - name: 旧 .emacs.d削除
-#   become: true
-#   file:
-#     path: "/home/{{ user_name }}/.emacs.d"
-#     owner: "{{ user_name }}"
-#     group: staff
-#     state: absent
-
-# - name: git clone .emacs.d
-#   become: true
-#   become_user: "{{ user_name }}"
-#   git:
-#     repo: git@github.com:ken197x/emacs.git
-#     dest: "/home/{{ user_name }}/.emacs.d"
-#     accept_hostkey: yes
-#     version: master
-
 - name: リンク .gitconfig (.emacs.d)
   become: true
   ansible.builtin.file:
@@ -56,17 +39,11 @@
 - name: chown .gitconfig
   become: true
   ansible.builtin.shell: "chown -h {{ user_name }}.staff /home/{{ user_name }}/.gitconfig"
-  args:
-    warn: no
 
 - name: chown .gitignore
   become: true
   ansible.builtin.shell: "chown -h {{ user_name }}.staff /home/{{ user_name }}/.gitignore"
-  args:
-    warn: no
 
 - name: chown .ssh/config
   become: true
   ansible.builtin.shell: "chown -h {{ user_name }}.staff /home/{{ user_name }}/.ssh/config"
-  args:
-    warn: no

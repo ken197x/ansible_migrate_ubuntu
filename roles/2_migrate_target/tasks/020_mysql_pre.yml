@@ -13,11 +13,6 @@
   notify:
     - restart mysql
 
-- name: Python3ライブラリインストール
-  become: true
-  ansible.builtin.pip:
-    name: mysqlclient
-
 - name: MySQL初期設定
   become: true
   ansible.builtin.shell: mysql_secure_installation --use-default --password=setup

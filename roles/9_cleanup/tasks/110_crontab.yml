@@ -1,11 +1,17 @@
 # crontab設定
 
+- name: ファイルが存在しているかチェックする
+  become: yes
+  ansible.builtin.stat:
+    path: "/home/{{ user_name }}/crontab"
+    get_checksum: false
+  register: crontab_stat
+
 - name: crontab：適用（ユーザ）
   become: yes
   become_user: "{{ user_name }}"
   ansible.builtin.shell: "crontab /home/{{ user_name }}/crontab"
-  args:
-    warn: no
+  when: crontab_stat.stat.exists == true
 
 - name: crontab：作業ファイル削除
   become: true
@@ -18,6 +24,7 @@
 - name: crontab：適用 (root)
   become: true
   ansible.builtin.cron:
+    name: 'certbot'
     minute: "43"
     hour: "3"
     job: "/usr/bin/certbot renew --quiet"

@@ -52,7 +52,7 @@
 - name: ApacheユーザディレクトリでPHP許可
   become: true
   ansible.builtin.replace:
-    path: /etc/apache2/mods-available/php8.1.conf
+    path: /etc/apache2/mods-available/php8.3.conf
     after: "# prevents .htaccess files from disabling it."
     regexp: '^(.*)$'
     replace: '# \1'

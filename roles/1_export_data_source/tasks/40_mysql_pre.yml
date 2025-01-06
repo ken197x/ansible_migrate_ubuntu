@@ -6,6 +6,7 @@
     name: "{{ item.db }}"
     target: "/home/{{ user_name }}/ansible_tmp/{{ item.dest }}.dump.sql.gz"
   with_items:
+    - { db: 'auth_test', dest: 'auth_test' }
     - { db: 'bookmark', dest: 'bookmark' }
     - { db: 'tv', dest: 'tv' }
     - { db: 'wordpress', dest: 'wordpress' }

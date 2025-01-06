@@ -5,7 +5,9 @@
     password: "{{ mysql_ops_pass }}"
     state: present
     priv: "*.*:ALL"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     host: localhost
+    check_implicit_admin: true
   notify: restart mysql
 
 - name: MySQLユーザ作成 (app)
@@ -15,7 +17,9 @@
     password: "{{ mysql_app_pass }}"
     state: present
     priv: "*.*:ALTER,CREATE,CREATE TEMPORARY TABLES,CREATE VIEW,DELETE,DROP,EXECUTE,FILE,INDEX,INSERT,LOCK TABLES,SELECT,UPDATE"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     host: localhost
+    check_implicit_admin: true
   notify: restart mysql
 
 - name: MySQLデータベース削除
@@ -23,7 +27,10 @@
   community.mysql.mysql_db:
     state: absent
     name: "{{ item }}"
+    login_user: ops
+    login_password: "{{ mysql_ops_pass }}"
   with_items:
+    - auth_test
     - bookmark
     - tv
     - wordpress
@@ -36,7 +43,10 @@
     state: import
     name: "{{ item.db }}"
     target: "/home/{{ user_name }}/ansible_tmp/{{ item.dest }}.dump.sql.gz"
+    login_user: ops
+    login_password: "{{ mysql_ops_pass }}"
   with_items:
+    - { db: 'auth_test', dest: 'auth_test' }
     - { db: 'bookmark', dest: 'bookmark' }
     - { db: 'tv', dest: 'tv' }
     - { db: 'wordpress', dest: 'wordpress' }
