@@ -11,6 +11,7 @@
     - php-curl
     - php-intl
     - php-mysql
+    - php-sqlite3
     - libapache2-mod-php
     - phpmyadmin
   notify:
