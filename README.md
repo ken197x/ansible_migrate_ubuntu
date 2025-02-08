@@ -1,2 +1,2 @@
 # ansible_migrate_ubuntu
-Ubuntu20 -> 22
+Ubuntu22 -> 24
