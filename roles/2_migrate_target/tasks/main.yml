@@ -1,7 +1,6 @@
 - include_tasks: 000_apt.yml
 - include_tasks: 010_locale.yml
 - include_tasks: 020_mysql_pre.yml
-- include_tasks: 030_popfile_pre.yml
 - include_tasks: 040_add_user.yml
 - include_tasks: 050_php.yml
 - include_tasks: 060_samba.yml

@@ -1,5 +1,4 @@
 # テンポラリディレクトリ作成＋ファイル圧縮
-# POPFileは停止していること
 
 - name: ローカル：テンポラリディレクトリ削除
   ansible.builtin.file:
@@ -24,7 +23,6 @@
     - { src: "/home/{{ user_name}}/public_html", dest: 'home_public_html.tgz' }
     - { src: "/home/{{ user_name}}/sql", dest: 'home_sql.tgz' }
     - { src: "/home/{{ user_name}}/tmp", dest: 'home_tmp.tgz' }
-    - { src: '/var/lib/popfile', dest: 'var_popfile.tgz' }
     - { src: '/var/public_smb', dest: 'var_public_smb.tgz' }
     - { src: '/var/www/html', dest: 'var_html.tgz' }
     - { src: '/etc/letsencrypt', dest: 'etc_letsencrypt.tgz' }

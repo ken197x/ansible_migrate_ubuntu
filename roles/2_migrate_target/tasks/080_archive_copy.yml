@@ -29,7 +29,6 @@
     - "/home/{{ user_name }}/public_html"
     - "/home/{{ user_name }}/sql"
     - "/home/{{ user_name }}/tmp"
-    - '/var/lib/popfile'
     - '/var/public_smb'
     - '/var/www/html'
     - '/etc/letsencrypt'
@@ -47,7 +46,6 @@
     - 'home_public_html.tgz'
     - 'home_sql.tgz'
     - 'home_tmp.tgz'
-    # - 'var_popfile.tgz' # popfile は移管が終わった後
     - 'var_public_smb.tgz'
     - 'var_html.tgz'
     - 'etc_letsencrypt.tgz'
