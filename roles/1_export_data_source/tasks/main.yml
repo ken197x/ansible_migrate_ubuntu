@@ -1,6 +1,4 @@
 - include_tasks: 10_crontab.yml
-- include_tasks: 20_popfile_pre.yml
 - include_tasks: 30_archive.yml
 - include_tasks: 40_mysql_pre.yml
-- include_tasks: 50_popfile_post.yml
 - include_tasks: 60_ip.yml
